@@ -1,6 +1,7 @@
-package guru.springframework.msscbrewery.services;
+package guru.springframework.msscbrewery.services.v2;
 
-import guru.springframework.msscbrewery.web.model.BeerDto;
+import guru.springframework.msscbrewery.web.model.v2.BeerDtoV2;
+import guru.springframework.msscbrewery.web.model.v2.BeerStyleEnum;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -8,20 +9,20 @@ import java.util.UUID;
 
 @Service
 @Slf4j
-public class BeerServiceImpl implements BeerService {
+public class BeerServiceImplV2 implements BeerServiceV2 {
     @Override
-    public BeerDto getBeerById(UUID beerId) {
+    public BeerDtoV2 getBeerById(UUID beerId) {
         log.info("Beer with id: {} returned: ", beerId);
-        return BeerDto.builder().id(UUID.randomUUID())
+        return BeerDtoV2.builder().id(UUID.randomUUID())
                 .beerName("Galaxy Cat")
-                .beerStyle("Pale Ale")
+                .beerStyle(BeerStyleEnum.GOSE)
                 .upc(123445L)
                 .build();
     }
 
     @Override
-    public BeerDto saveNewBeer(BeerDto beerDto) {
-        BeerDto savedBeer = BeerDto.builder().id(UUID.randomUUID())
+    public BeerDtoV2 saveNewBeer(BeerDtoV2 beerDto) {
+        BeerDtoV2 savedBeer = BeerDtoV2.builder().id(UUID.randomUUID())
                 .beerName(beerDto.getBeerName())
                 .beerStyle(beerDto.getBeerStyle())
                 .upc(beerDto.getUpc())
@@ -32,7 +33,7 @@ public class BeerServiceImpl implements BeerService {
     }
 
     @Override
-    public BeerDto updateBeer(UUID beerId, BeerDto beerDto) {
+    public BeerDtoV2 updateBeer(UUID beerId, BeerDtoV2 beerDto) {
         log.info("Beer with id: {} was updated as: {} ", beerId, beerDto);
         return beerDto;
     }
