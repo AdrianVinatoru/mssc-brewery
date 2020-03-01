@@ -22,13 +22,13 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public CustomerDto saveCustomer(CustomerDto customerDto) {
-        CustomerDto savedCustmoer = CustomerDto.builder()
+        CustomerDto savedCustomerDto = CustomerDto.builder()
                 .uuid(UUID.randomUUID())
-                .name("New Customer")
+                .name(customerDto.getName())
                 .build();
         log.info("Customer saved: {}", customerDto);
 
-        return savedCustmoer;
+        return savedCustomerDto;
     }
 
     @Override
